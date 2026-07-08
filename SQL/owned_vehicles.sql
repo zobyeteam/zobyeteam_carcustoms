@@ -1,0 +1,1 @@
+ALTER TABLE `owned_vehicles` ADD `stancer` longtext DEFAULT NULL;

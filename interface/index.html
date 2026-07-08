@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOBYETEAM | VEHICLECUSTOMS</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- Coloris (Color Picker) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    borderRadius: {
+                        DEFAULT: 0,
+                        'md': '0.15vw',
+                        'lg': '0.2vw',
+                        'xl': '0.3vw',
+                        '2xl': '0.4vw',
+                        '3xl': '0.8vw',
+                        'full': '100vw'
+                    },
+                    spacing: {
+                        '0': '0',
+                        '1': '0.2vw',
+                        '2': '0.4vw',
+                        '3': '0.6vw',
+                        '4': '0.8vw',
+                        '5': '1.0vw',
+                        '6': '1.2vw',
+                        '7': '1.4vw',
+                        '8': '1.6vw',
+                        '9': '1.8vw',
+                        '10': '2vw',
+                    },
+                    fontSize: {
+                        'xs': '0.625vw',
+                        'sm': '0.73vw',
+                        'lg': '0.9375vw',
+                        'xl': '1.04vw',
+                        '2xl': '1.25vw',
+                        '3xl': '1.5625vw',
+                        '4xl': '1.875vw',
+                        'base': '0.84vw'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Import Components Only -->
+    <script src="./components/DollarsIcon.js"></script>
+    <script src="./components/BackspcaeIcon.js"></script>
+    <script src="./components/ZoominoutIcon.js"></script>
+    <script src="./components/DragIcon.js"></script>
+    <script src="./components/MaxSpeedIcon.js"></script>
+    <script src="./components/AccelerationIcon.js"></script>
+    <script src="./components/PowerIcon.js"></script>
+    <script src="./components/BrakeIcon.js"></script>
+    <script src="./components/BackMenuIcon.js"></script>
+    <script src="./components/RemoveModIcon.js"></script>
+    <script src="./components/BarcodeIcon.js"></script>
+    <script src="./components/ModDollarsIcon.js"></script>
+
+
+    <div class="wrapper">
+        <!-- Customs -->
+        <div v-show="display && (route == 'custom' || route == 'stancer' || route == 'colorCustom')" @vue:updated="updateSwiper">
+            <!-- Header -->
+            <div v-if="route == 'custom' || route == 'stancer' || route == 'colorCustom'" class="absolute left-1/2 -translate-x-1/2 top-5 w-[98%] h-[7vw] header-bg text-base overflow-hidden">
+                <div class="absolute flex justify-between w-full h-full">
+                    <div class="w-[.7%] h-[3.5%] bg-[#9F9F9F]"></div>
+                    <div class="w-[.7%] h-[3.5%] bg-[#FFFFFF]"></div>
+                </div>
+
+                <div class="absolute left-1/2 -translate-x-1/2 top-2">
+                    <!-- Center Bar -->
+                    <svg class="w-[6.197916666666667vw]" viewBox="0 0 119 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 0H119L113.5 5H0L5.5 0Z" fill="#9F9F9F" />
+                    </svg>
+                </div>
+
+                <div class="flex justify-between w-full h-full">
+                    <div class="flex items-center w-[50%] h-full px-[3%]">
+                        <!-- Logo -->
+                        <img src="https://cdn.discordapp.com/attachments/793464111823978526/1196861631423074548/logo_white.png?ex=65b92b41&is=65a6b641&hm=fd283ebb712b2de76c3d4389c40a566c0a3ebc4cc94520d6daea389e7fbb446a&" class="h-[70%]">
+                        <div class="ml-[10%] w-[.4%] h-[70%] bg-[#3B3B3B]"></div>
+                        <div class="flex flex-col ml-5">
+                            <div class="text-[1.3vw] text-white font-bold">{{ vehicleName }}</div>
+                            <div class="text-[#9F9F9F] text-[1vw] font-bold">{{ vehiclePlate }}</div>
+                        </div>
+                    </div>
+
+                    <div class="w-full h-full">
+                        <div class="flex justify-end h-[60%]">
+                            <div class="flex px-5 mt-[1.55%] text-red-500">
+                                <div class="text-[1.2vw] text-[#9F9F9F] font-bold">MY WALLET</div>
+                            </div>
+                            <div class="flex items-center w-[23%] h-[70%] bg-[#00A3FF]">
+                                <div class="flex items-center p-5">
+                                    <div class="text-[1.1vw] mt-1 text-white font-bold">{{
+                                        accounts.money.toLocaleString('en-US') }}</div>
+                                    <dollars-icon></dollars-icon>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Button Guide -->
+                        <div class="absolute left-[41%] top-[55%] flex w-full h-[12%] gap-5 mt-6">
+                            <div class="flex items-center gap-2">
+                                <div class="flex justify-center items-center w-[1.77vw] h-[0.88vw] text-xs bg-[#9F9F9F] text-[#2D2D2D] font-bold rounded-sm">
+                                    ESC
+                                </div>
+                                <div class="flex justify-center items-center w-[1.77vw] h-[0.88vw] text-xs bg-[#9F9F9F] rounded-sm">
+                                    <backspace-icon></backspace-icon>
+                                </div>
+                                <p class="whitespace-nowrap text-[#D5D5D5] text-[.7vw]">Back</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="flex justify-center items-center w-[1.77vw] h-[0.88vw] text-xs bg-[#9F9F9F] text-[#2D2D2D] font-bold rounded-sm">
+                                    {{ keys.ToggleNuiFocus }}
+                                </div>
+                                <p class="whitespace-nowrap text-[#D5D5D5] text-[.7vw]">Toggle Perspective</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="flex justify-center items-center w-[1.77vw] h-[0.88vw] text-xs bg-[#9F9F9F] text-[#2D2D2D] font-bold rounded-sm">
+                                    W
+                                </div>
+                                <div class="flex justify-center items-center w-[1.77vw] h-[0.88vw] text-xs bg-[#9F9F9F] text-[#2D2D2D] font-bold rounded-sm">
+                                    A
+                                </div>
+                                <div class="flex justify-center items-center w-[1.77vw] h-[0.88vw] text-xs bg-[#9F9F9F] text-[#2D2D2D] font-bold rounded-sm">
+                                    S
+                                </div>
+                                <div class="flex justify-center items-center w-[1.77vw] h-[0.88vw] text-xs bg-[#9F9F9F] text-[#2D2D2D] font-bold rounded-sm">
+                                    D
+                                </div>
+                                <p class="whitespace-nowrap text-[#D5D5D5] text-[.7vw]">Rotate Camera</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="flex justify-center items-center w-[1.77vw] h-[0.88vw] text-xs bg-[#9F9F9F] text-[#2D2D2D] font-bold rounded-sm">
+                                    <zoominout-icon></zoominout-icon>
+                                </div>
+                                <p class="whitespace-nowrap text-[#D5D5D5] text-[.7vw]">Zoom in/out</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="flex justify-center items-center w-[1.77vw] h-[0.88vw] text-xs bg-[#9F9F9F] text-[#2D2D2D] font-bold rounded-sm">
+                                    <drag-icon></drag-icon>
+                                </div>
+                                <p class="whitespace-nowrap text-[#D5D5D5] text-[.7vw]">Drag to move left/right</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="flex justify-center items-center w-[1.77vw] h-[0.88vw] text-xs bg-[#9F9F9F] text-[#2D2D2D] font-bold rounded-sm">
+                                    {{ keys.ResetCamera }}
+                                </div>
+                                <p class="whitespace-nowrap text-[#D5D5D5] text-[.7vw]">Reset Camera</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute left-1/2 -translate-x-1/2 top-[97.5%] w-[97%] h-[2.5%] bg-[#676767]"></div>
+
+                <div class="absolute top-[96.5%] flex justify-between w-full h-full">
+                    <div class="w-[.7%] h-[3.5%] bg-[#9F9F9F]"></div>
+                    <div class="w-[.7%] h-[3.5%] bg-[#9F9F9F]"></div>
+                </div>
+            </div>
+
+            <!-- Left -->
+            <transition>
+                <div v-if="route == 'custom'" class="absolute left-5 top-1/2 -translate-y-1/2 flex flex-col items-center w-[20vw] h-[20vw] left-bg overflow-hidden text-base">
+                    <div class="absolute flex w-full h-full">
+                        <div class="w-[3.5%] h-[1.5%] bg-[#9F9F9F]"></div>
+                        <div class="absolute top-0 flex justify-center w-full h-full">
+                            <div class="w-[85%] h-[.8%] bg-gradient-to-l from-transparent to-[#676767]"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between px-10 items-center w-full h-[5.052083333333333vw]">
+                        <div class="text-[1vw] mt-2 text-white font-bold">VEHICLE STATUS</div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-[.5vw] h-[1vw] bg-[#D5D5D5] anim1"></div>
+                            <div class="w-[.5vw] h-[2vw] bg-[#D5D5D5] anim2"></div>
+                            <div class="w-[.5vw] h-[3vw] bg-[#D5D5D5] anim3"></div>
+                            <div class="w-[.5vw] h-[2vw] bg-[#D5D5D5] anim4"></div>
+                            <div class="w-[.5vw] h-[1vw] bg-[#D5D5D5] anim5"></div>
+                        </div>
+                    </div>
+
+                    <div class="w-[80%] h-[.8%] bg-gradient-to-l from-transparent to-[#676767]"></div>
+
+                    <div class="flex flex-col justify-center items-center gap-[1.5vw] -ml-5 w-full h-[80%]">
+                        <div class="flex items-center w-[75%] gap-5">
+                            <maxspeed-icon></maxspeed-icon>
+                            <div class="flex flex-col gap-[15%] w-full h-full">
+                                <div class="flex justify-between w-full">
+                                    <div class="text-white">MAX SPEED</div>
+                                    <div class="text-white">{{ vehicleStatus.maxSpeed }}</div>
+                                </div>
+                                <div class="flex gap-2 w-full h-full">
+                                    <div v-for="index in 6" :key="index" class="w-[15%] h-full -skew-x-[40deg] bg-[#9F9F9F]">
+                                        <div class="h-full bg-[#00A3FF] duration-500" :class="`w-[${Math.min(100, Math.max(0, ((vehicleStatus.maxSpeed / 7) - ((index - 1) * 0.167)) / 0.167 * 100))}%]`">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center w-[75%]  gap-5">
+                            <acceleration-icon></acceleration-icon>
+                            <div class="flex flex-col gap-[15%] w-full h-full">
+                                <div class="flex justify-between w-full ">
+                                    <div class="text-white">ACCELERATION</div>
+                                    <div class="text-white">{{ vehicleStatus.acceleration }}</div>
+                                </div>
+                                <div class="flex gap-2 w-full h-full">
+                                    <div v-for="index in 6" :key="index" class="w-[15%] h-full -skew-x-[40deg] bg-[#9F9F9F]">
+                                        <div class="h-full bg-[#00A3FF] duration-500" :class="`w-[${Math.min(100, Math.max(0, ((vehicleStatus.acceleration / 7) - ((index - 1) * 0.167)) / 0.167 * 100))}%]`">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex w-[75%]  gap-5">
+                            <power-icon></power-icon>
+                            <div class="flex flex-col gap-[15%] w-full h-full">
+                                <div class="flex justify-between w-full">
+                                    <div class="text-white">POWER</div>
+                                    <div class="text-white">{{ vehicleStatus.power }}</div>
+                                </div>
+                                <div class="flex gap-2 w-full h-full">
+                                    <div v-for="index in 6" :key="index" class="w-[15%] h-full -skew-x-[40deg] bg-[#9F9F9F]">
+                                        <div class="h-full bg-[#00A3FF] duration-500" :class="`w-[${Math.min(100, Math.max(0, ((vehicleStatus.power / 7) - ((index - 1) * 0.167)) / 0.167 * 100))}%]`">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex w-[75%]  gap-5">
+                            <brake-icon></brake-icon>
+                            <div class="flex flex-col gap-[15%] w-full h-full">
+                                <div class="flex justify-between w-full">
+                                    <div class="text-white">BRAKE</div>
+                                    <div class="text-white">{{ vehicleStatus.breaks }}</div>
+                                </div>
+                                <div class="flex gap-2 w-full h-full">
+                                    <div v-for="index in 6" :key="index" class="w-[15%] h-full -skew-x-[40deg] bg-[#9F9F9F]">
+                                        <div class="h-full bg-[#00A3FF] duration-500" :class="`w-[${Math.min(100, Math.max(0, ((vehicleStatus.breaks / 1.75) - ((index - 1) * 0.167)) / 0.167 * 100))}%]`">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute top-[98.4%] flex justify-between w-full h-full">
+                        <div class="w-[3.5%] h-[1.5%] bg-[#9F9F9F]"></div>
+                        <div class="absolute top-[.5%] flex justify-center w-full h-full">
+                            <div class="w-[85%] h-[1%] bg-gradient-to-l from-transparent to-[#676767]"></div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+
+            <!-- Right Menus -->
+            <transition>
+                <div v-if="(route == 'custom' || route == 'colorCustom') && !totalListDisplay" class="absolute right-5 top-1/2 -translate-y-1/2 flex flex-col justify-center items-center w-[13vw] h-[25vw] right-bg overflow-hidden text-base">
+                    <div class="absolute flex justify-end w-full h-full">
+                        <div class="w-[6%] h-[1.2%] bg-[#9F9F9F]"></div>
+                        <div class="absolute flex justify-center w-full h-full">
+                            <div class="w-[80%] h-[.8%] bg-gradient-to-r from-transparent to-[#676767]"></div>
+                        </div>
+                    </div>
+
+                    <div v-if="menuLabel" @click="backMenu" class="flex justify-end gap-3 w-full mt-6 px-10 py-4 text-[#00A3FF] text-[.9vw] font-bold cursor-pointer z-10">
+                        <backmenu-icon></backmenu-icon>
+                        <div class="max-w-[90%] truncate">
+                            {{ menuLabel }}
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2 w-full h-[90%] overflow-y-auto menusInput z-10">
+                        <div v-for="(item, index) in menus" :key="index" @click="enterMenu($event, item.name, item.index, item.label, item.price)" class="hoverMenus px-10 py-4 cursor-pointer" :class="[ menuLabel == item.label ? 'is-select bg-gradient-to-r from-transparent to-[#00A3FF] duration-500' : 'bg-transparent duration-500' ]">
+                            <div class="text-white text-[.9vw] font-bold whitespace-nowrap">{{ item.label }}</div>
+                        </div>
+                    </div>
+
+                    <div class="absolute flex justify-end items-end w-full h-full">
+                        <div class="w-[6%] h-[1.2%] bg-[#9F9F9F]"></div>
+                        <div class="absolute top-[99.1%] flex justify-center w-full h-full">
+                            <div class="w-[80%] h-[.8%] bg-gradient-to-r from-transparent to-[#676767]"></div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+
+            <!-- Right Total Price -->
+            <transition>
+                <div v-show="(route == 'custom' || route == 'colorCustom') && totalListDisplay" @vue:updated="paymentSwiper.update()" class="absolute right-5 top-1/2 -translate-y-1/2 flex justify-center items-center w-[17vw] h-[25vw] right-bg overflow-hidden text-base">
+                    <div class="absolute top-0 flex justify-end w-full h-[5%]">
+                        <div class="w-[4%] h-[25%] bg-[#9F9F9F]"></div>
+                        <div class="absolute top-0 flex justify-center w-full h-full">
+                            <div class="w-[85%] h-[20%] bg-gradient-to-r from-transparent to-[#676767]"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center w-full h-full overflow-y-auto">
+                        <div class="flex justify-between items-center w-full h-[20%] py-5">
+                            <div class="flex flex-col gap-2 w-[50%] h-full">
+                                <div class="w-[50%] h-[15%] bg-[#9F9F9F] totalListAnim1"></div>
+                                <div class="w-[65%] h-[15%] bg-[#9F9F9F] totalListAnim2"></div>
+                                <div class="w-[30%] h-[15%] bg-[#9F9F9F] totalListAnim3"></div>
+                            </div>
+                            <div @click="totalListDisplay = false" class="flex items-center gap-3 w-[50%] h-full cursor-pointer">
+                                <backmenu-icon></backmenu-icon>
+                                <div class="text-white text-[1vw] font-bold">TOTAL LIST</div>
+                            </div>
+                        </div>
+
+                        <div class="-mt-2 w-[90%] h-[.8%] bg-gradient-to-r from-transparent to-[#676767]"></div>
+
+                        <div class="mt-5 flex flex-col gap-5 w-[90%] h-[50%] overflow-y-auto totalPriceInput">
+                            <div v-for="(item, index) in customizing" :key="index" class="group flex justify-between ">
+                                <div class="text-white text-[.8vw] font-bold">{{ item.label }}</div>
+                                <div class="flex gap-2 text-white text-[.8vw] font-bold z-10">
+                                    <div>{{ item.price?.toLocaleString('en-US') }}</div>
+                                    <removemod-icon @click="removeMod(item.modType)"></removemod-icon>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative flex mt-2 w-[90%] h-[10%] payment-bg bg-red">
+                            <div class="absolute flex justify-between w-full h-full">
+                                <div class="w-[2%] h-[10%] bg-[#9F9F9F]"></div>
+                                <div class="w-[2%] h-[10%] bg-[#9F9F9F]"></div>
+                            </div>
+
+                            <svg @click="prevSlide" class="w-[1.7291666666666667vw] cursor-pointer z-10" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M-0.5 0.0449084L27.4999 0.0449125L16.4999 11.0007L27.4999 22.0003L-0.499962 22.0007L-0.5 0.0449084Z" fill="url(#paint0_linear_417_1546)" />
+                                <path d="M21.0903 11L30 19.5559L27.4549 22L16 11L27.4549 -5.00709e-07L30 2.44406L21.0903 11Z" fill="#00A3FF" />
+                                <defs>
+                                    <linearGradient id="paint0_linear_417_1546" x1="-1" y1="11" x2="28" y2="11" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.927535" stop-color="#00A3FF" stop-opacity="0" />
+                                        <stop offset="1" stop-color="#00A3FF" stop-opacity="0.6" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+
+                            <div id="paymentSwiper" class="flex w-full h-full overflow-hidden">
+                                <div class="swiper-wrapper w-[80%] h-full ">
+                                    <div class="swiper-slide group flex justify-center items-center text-white text-[.8vw] font-bold z-10">
+                                        PAY WITH CASH</div>
+                                    <div class="swiper-slide group flex justify-center items-center text-white text-[.8vw] font-bold z-10">
+                                        PAY WITH BANK</div>
+                                </div>
+                            </div>
+
+                            <svg @click="nextSlide" class="w-[1.7291666666666667vw] cursor-pointer z-10" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30.5 0.0449084L2.50011 0.0449125L13.5001 11.0007L2.50011 22.0003L30.5 22.0007L30.5 0.0449084Z" fill="url(#paint0_linear_417_1542)" />
+                                <path d="M8.90975 11L-8.46841e-07 19.5559L2.54513 22L14 11L2.54513 -5.00709e-07L-9.8857e-08 2.44406L8.90975 11Z" fill="#00A3FF" />
+                                <defs>
+                                    <linearGradient id="paint0_linear_417_1542" x1="31" y1="11" x2="2" y2="11" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.927535" stop-color="#00A3FF" stop-opacity="0" />
+                                        <stop offset="1" stop-color="#00A3FF" stop-opacity="0.6" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+
+                            <div class="absolute flex justify-between items-end w-full h-full">
+                                <div class="w-[2%] h-[10%] bg-[#9F9F9F]"></div>
+                                <div class="w-[2%] h-[10%] bg-[#9F9F9F]"></div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 w-[90%] h-[.6%] bg-[#676767]">
+                            <div class="flex justify-between w-full h-full">
+                                <div class="w-[1.5%] h-full bg-[#9F9F9F]"></div>
+                                <div class="w-[1.5%] h-full bg-[#9F9F9F]"></div>
+                            </div>
+                        </div>
+
+                        <barcode-icon></barcode-icon>
+                    </div>
+
+                    <div class="absolute top-[98.75%] flex justify-end w-full h-full">
+                        <div class="w-[3.5%] h-[1.5%] bg-[#9F9F9F]"></div>
+                        <div class="absolute top-[.5%] flex justify-center w-full h-full">
+                            <div class="w-[80%] h-[.8%] bg-gradient-to-r from-transparent to-[#676767]"></div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+
+            <!-- Footer -->
+            <transition>
+                <div v-show="(route == 'custom' || route == 'colorCustom') && shouldShowModList" class="absolute left-1/2 -translate-x-1/2 top-[92%] -translate-y-1/2 w-[97.83333333333333vw] h-[8.33333333333vw] footer-bg text-base -z-10">
+                    <div class="absolute flex justify-between w-full h-full">
+                        <div class="w-[.7%] h-[3.5%] bg-[#9F9F9F]"></div>
+                        <div class="w-[.7%] h-[3.5%] bg-[#9F9F9F]"></div>
+                    </div>
+
+                    <div v-show="typeof currentModIndex == 'number' && (currentModIndex || currentModIndex == 0) && modLength > 0 && (ownName == 'ColorChameleon' ? ((currentModIndex < 160)  ? 0 : currentModIndex - 160) : currentModIndex + 2) <= modLength" class="absolute left-1/2 -translate-x-1/2 -top-[43%] w-[6%] h-[23%] modlist-bg">
+                        <div class="absolute flex justify-between w-full h-full">
+                            <div class="w-[10%] h-[15%] bg-[#9F9F9F]"></div>
+                            <div class="w-[10%] h-[15%] bg-[#9F9F9F]"></div>
+                        </div>
+
+                        <div class="flex justify-center items-center w-full h-full text-white font-bold">
+                            {{ ownName == 'ColorChameleon' ? ((currentModIndex < 160) ? 0 : currentModIndex - 160) : currentModIndex + 2 }}/{{ modLength }} </div>
+
+                                <div class="absolute flex justify-between -mt-[4.5%] w-full h-full">
+                                    <div class="w-[10%] h-[15%] bg-[#9F9F9F]"></div>
+                                    <div class="w-[10%] h-[15%] bg-[#9F9F9F]"></div>
+                                </div>
+                        </div>
+
+                        <div id="mainSwiper" class="absolute left-[40.5%] -translate-x-1/2 top-[37%] -translate-y-1/2 w-[78%] h-[99%] z-10 overflow-hidden">
+                            <div class="swiper-wrapper">
+                                <div v-for="(item, index) in modList" :key="index" @click="enterMenu($event, item.name, item.index, item.label, item.price)" @vue:mounted="updateColors" class="swiper-slide relative item modlist-bg cursor-pointer overflow-hidden">
+                                    <div class="absolute w-full h-full">
+                                        <div class="w-[5%] h-[3%] duration-500" :class="[ currentModIndex == item.index ? 'bg-[#00A3FF]' : 'bg-[#9F9F9F]' ]">
+                                        </div>
+                                        <div class="absolute left-[3.5%] top-0 flex justify-center w-full h-full">
+                                            <div class="w-[92.5%] h-[2%] duration-500" :class="[ currentModIndex == item.index ? 'bg-[#00A3FF]' : 'bg-[#676767]' ]">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="absolute top-[90%] mx-5 w-[3%] h-[2.5%] duration-500" :class="[ currentModIndex == item.index ? 'bg-[#00A3FF]' : 'bg-[#9F9F9F]' ]">
+                                    </div>
+
+                                    <div v-show="item.name === 'ColorPrimary'" class="absolute right-[7.5%] top-1/2 -translate-y-1/2 z-[9999]">
+                                        <div class="full">
+                                            <input type="text" v-model="primaryColor" class="coloris">
+                                        </div>
+                                        <!-- <input type="color" v-model="primaryColor" class="size-full bg-transparent cursor-pointer"> -->
+                                    </div>
+                                    <div v-show="item.name === 'ColorSecondary'" class="absolute right-[7.5%] top-1/2 -translate-y-1/2 z-[9999] size-[4vw] rounded-full overflow-hidden">
+                                        <div class="full">
+                                            <input type="text" v-model="secondaryColor" class="coloris">
+                                        </div>
+                                        <!-- <input type="color" v-model="secondaryColor" class="size-full bg-transparent cursor-pointer"> -->
+                                    </div>
+                                    <div v-show="item.name === 'Xenon'" class="absolute right-[7.5%] top-1/2 -translate-y-1/2 z-[9999] size-[4vw] rounded-full overflow-hidden">
+                                        <div class="full">
+                                            <input type="text" v-model="xenonColor" class="coloris">
+                                        </div>
+                                        <!-- <input type="color" v-model="xenonColor" class="size-full bg-transparent cursor-pointer"> -->
+                                    </div>
+                                    <div v-show="item.name === 'Neon'" class="absolute right-[7.5%] top-1/2 -translate-y-1/2 z-[9999] size-[4vw] rounded-full overflow-hidden">
+                                        <div class="full">
+                                            <input type="text" v-model="neonColor" class="coloris">
+                                        </div>
+                                        <!-- <input type="color" v-model="neonColor" class="size-full bg-transparent cursor-pointer"> -->
+                                    </div>
+                                    <div v-show="item.name === 'PearlescentColor'" class="absolute right-[7.5%] top-1/2 -translate-y-1/2 z-[9999] size-[4vw] rounded-full overflow-hidden">
+                                        <div class="full">
+                                            <input type="text" v-model="pearlescentColor" class="coloris">
+                                        </div>
+                                        <!-- <input type="color" v-model="pearlescentColor" class="size-full bg-transparent cursor-pointer"> -->
+                                    </div>
+                                    <div v-show="item.name === 'TyreSmokeColor'" class="absolute right-[7.5%] top-1/2 -translate-y-1/2 z-[9999] size-[4vw] rounded-full overflow-hidden">
+                                        <div class="full">
+                                            <input type="text" v-model="tyreColor" class="coloris">
+                                        </div>
+                                        <!-- <input type="color" v-model="tyreColor" class="size-full bg-transparent cursor-pointer"> -->
+                                    </div>
+                                    <div v-show="item.name === 'WheelColor'" class="absolute right-[7.5%] top-1/2 -translate-y-1/2 z-[9999] size-[4vw] rounded-full overflow-hidden">
+                                        <div class="full">
+                                            <input type="text" v-model="wheelColor" class="coloris">
+                                        </div>
+                                        <!-- <input type="color" v-model="wheelColor" class="size-full bg-transparent cursor-pointer"> -->
+                                    </div>
+                                    <div v-show="item.name === 'InteriorColor'" class="absolute right-[7.5%] top-1/2 -translate-y-1/2 z-[9999] size-[4vw] rounded-full overflow-hidden">
+                                        <div class="full">
+                                            <input type="text" v-model="interiorColor" class="coloris">
+                                        </div>
+                                        <!-- <input type="color" v-model="interiorColor" class="size-full bg-transparent cursor-pointer"> -->
+                                    </div>
+
+                                    <div v-if="ownName == 'ColorChameleon'" class="absolute right-[7.5%] top-1/2 -translate-y-1/2 z-[9999] size-[4vw] rounded-full bg-gradient-to-br from-[#00A3FF] from-[50%] via-red-600 via-[50%] to-[#0057FF] to-[50%]" :class="[ `from-[${item.colors[0]}] to-[${item.colors[1]}]` ]"></div>
+
+                                    <div class="relative flex justify-center items-center w-full h-full">
+                                        <div class="flex flex-col justify-center gap-3 px-8 w-full h-full">
+                                            <div class="relative label max-w-[60%] w-fit text-[1vw] text-white font-bold duration-500" :class="[ currentModIndex == item.index ? 'text-[#00A3FF] playAnim' : 'text-white' ]">
+                                                {{ item.label }}
+                                            </div>
+                                            <div class="flex gap-2">
+                                                <div class="text-white text-[.9vw]">
+                                                    {{item.price?.toLocaleString('en-US')}}
+                                                </div>
+                                                <moddollars-icon></moddollars-icon>
+                                            </div>
+                                        </div>
+
+                                        <div class="absolute right-0 flex justify-center items-center w-[40%] h-full z-[4]">
+                                            <img class="w-full object-contain z-[2]" :src="item.image">
+                                        </div>
+
+                                        <!-- absolute right-0 top-[55%] -translate-y-1/2 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="absolute left-1/2 -translate-x-1/2 top-[97.5%] w-[97%] h-[2.5%] bg-[#676767]">
+                        </div>
+
+                        <div class="absolute left-[4.5%] -translate-x-1/2 top-[94.3%] w-[3%] h-[6%] bg-[#00A3FF]">
+                        </div>
+
+                        <div class="absolute flex justify-between items-end w-full h-full">
+                            <div class="w-[.7%] h-[3.5%] bg-[#9F9F9F]"></div>
+                            <div class="w-[.7%] h-[3.5%] bg-[#9F9F9F]"></div>
+                        </div>
+                    </div>
+            </transition>
+
+            <!-- Purchase Display -->
+            <div v-if="route == 'custom' || route == 'colorCustom'" class="absolute left-[89.9%] -translate-x-1/2 top-[90.2%] -translate-y-1/2 flex flex-col w-[18%] h-[8.33333333333vw] purchase-bg z-10">
+                <div class="absolute flex justify-end w-full h-full">
+                    <div class="w-[3.5%] h-[3%] bg-[#9F9F9F]"></div>
+                    <div class="absolute right-[3.5%] top-0 flex justify-center w-full h-full">
+                        <div class="w-[92%] h-[2%] bg-[#676767]"></div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center items-center gap-5 w-full h-full p-5">
+                    <div class="flex justify-between w-[95%] gap-2">
+                        <div class="text-[#9F9F9F] text-[1vw] font-bold">TOTAL PRICE</div>
+                        <div class="flex items-center gap-2">
+                            <div class="text-white text-[1vw] font-bold">{{ totalPrice }}
+                            </div>
+                            <moddollars-icon></moddollars-icon>
+                        </div>
+                    </div>
+
+                    <div class="w-[95%] h-[2.5%] bg-[#676767]">
+                        <div class="flex justify-between w-full h-full">
+                            <div class="w-[2%] h-full bg-[#9F9F9F]"></div>
+                            <div class="w-[2%] h-full bg-[#9F9F9F]"></div>
+
+                        </div>
+                    </div>
+
+                    <div @click="totalListDisplay ? purchase() : (customizing[0] ? totalListDisplay = true : null);" class="confirm group relative w-[91%] h-[35%] cursor-pointer">
+                        <div class="absolute left-1/2 -translate-x-1/2 flex justify-between w-full h-full">
+                            <div class="group-hover:w-[4%] duration-300 white-block w-[2%] h-[10%] bg-white -translate-x-full">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 white-block w-[2%] h-[10%] bg-white translate-x-full">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 w-[2%] h-[10%] bg-white -translate-x-full absolute left-0 bottom-0">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 w-[2%] h-[10%] bg-white translate-x-full absolute right-0 bottom-0">
+                            </div>
+                        </div>
+                        <div class="purchase relative flex justify-center items-center w-full h-full bg-[#00A3FF] overflow-hidden z-10">
+
+                            <div class="text-white text-[.9vw] font-bold">{{ totalListDisplay ? 'CONFIRM' :
+                                'BILL'
+                                }}
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Stancer -->
+        <div v-if="display && route == 'stancer'">
+            <!-- Stancer Input-->
+            <transition>
+                <div v-if="route == 'stancer'">
+                    <div class="absolute left-5 top-1/2 -translate-y-1/2 flex flex-col items-center w-[20vw] h-[25vw] left-bg overflow-hidden text-base">
+                        <div class="absolute flex w-full h-full">
+                            <div class="w-[3.5%] h-[1.5%] bg-[#9F9F9F]"></div>
+                            <div class="absolute top-0 flex justify-center w-full h-full">
+                                <div class="w-[85%] h-[.8%] bg-gradient-to-l from-transparent to-[#676767]"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center p-10 w-full h-[5.052083333333333vw]">
+                            <div class="text-[1vw] text-white font-bold">VEHICLE STATUS</div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-[.5vw] h-[1vw] bg-[#D5D5D5] anim1"></div>
+                                <div class="w-[.5vw] h-[2vw] bg-[#D5D5D5] anim2"></div>
+                                <div class="w-[.5vw] h-[3vw] bg-[#D5D5D5] anim3"></div>
+                                <div class="w-[.5vw] h-[2vw] bg-[#D5D5D5] anim4"></div>
+                                <div class="w-[.5vw] h-[1vw] bg-[#D5D5D5] anim5"></div>
+                            </div>
+                        </div>
+
+                        <div class="w-[80%] h-[.8%] bg-gradient-to-l from-transparent to-[#676767]"></div>
+
+                        <div class="flex flex-col justify-center items-center gap-[.5vw] -ml-5 w-full h-[80%]">
+                            <div class="flex items-center w-[75%] h-[15%] gap-5">
+                                <svg class="w-[1.822916666666667vw]" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="35" height="35" fill="white" />
+                                    <path d="M16.4598 21.5C16.877 21.9167 17.4026 22.1127 18.0367 22.088C18.6708 22.0633 19.1296 21.834 19.4133 21.4L25.0198 13L16.61 18.6C16.1762 18.9 15.9386 19.354 15.8972 19.962C15.8558 20.57 16.0434 21.0827 16.4598 21.5ZM11.1036 26C10.7365 26 10.3988 25.9207 10.0904 25.762C9.78207 25.6033 9.53579 25.366 9.35157 25.05C8.91773 24.2667 8.58401 23.4543 8.35041 22.613C8.1168 21.7717 8 20.9007 8 20C8 18.6167 8.26297 17.3167 8.78892 16.1C9.31486 14.8833 10.028 13.825 10.9284 12.925C11.8295 12.025 12.889 11.3127 14.1071 10.788C15.3252 10.2633 16.6267 10.0007 18.0117 10C19.3799 10 20.6647 10.2583 21.8661 10.775C23.0675 11.2917 24.1188 11.996 25.0198 12.888C25.9209 13.7793 26.6384 14.821 27.1723 16.013C27.7063 17.205 27.9816 18.484 27.9983 19.85C28.015 20.7667 27.9108 21.6627 27.6859 22.538C27.461 23.4133 27.1146 24.2507 26.6467 25.05C26.4632 25.3667 26.2172 25.6043 25.9088 25.763C25.6005 25.9217 25.2621 26.0007 24.8937 26H11.1036Z" fill="#2D2D2D" />
+                                </svg>
+                                <div class="relative flex flex-col justify-center gap-1 w-full h-full">
+                                    <div class="flex justify-between w-full">
+                                        <div class="text-white">HEIGHT : {{ stancer.suspensionHeight }}</div>
+                                        <div class="text-white">0.3</div>
+                                    </div>
+                                    <input class="w-full h-[0.7vw] appearance-none rounded-[0.5em] focus:outline-none border-none bg-transparent" type="range" name="suspensionHeight" v-model="stancer.suspensionHeight" step="0.01" :min="stancerRange.SuspensionHeight[0]" :max="stancerRange.SuspensionHeight[1]" />
+                                    <div class="absolute top-[1.85vw] left-[0.01vw] w-full h-[0.35vw] bg-[#9F9F9F] rounded-[0.5em] -z-10">
+                                    </div>
+                                    <div class="absolute top-[1.85vw] left-[0.01vw] w-full h-[.35vw] -z-10 overflow-hidden">
+                                        <div class="h-[0.35vw] bg-[#00A3FF] pointer-events-none -z-10" :class="[ `w-[${(Number(stancer.suspensionHeight) - stancerRange.SuspensionHeight[0]) / (stancerRange.SuspensionHeight[1] - stancerRange.SuspensionHeight[0]) * 100}%]` ]">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center w-[75%] h-[15%] gap-5">
+                                <svg class="w-[1.822916666666667vw]" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="35" height="35" fill="white" />
+                                    <path d="M19.392 9.00001C20.8197 9.00004 22.2274 9.3317 23.5015 9.96823C24.7756 10.6048 25.8804 11.5283 26.7268 12.6644C27.5732 13.8005 28.1375 15.1173 28.3741 16.5085C28.6107 17.8997 28.513 19.3264 28.0889 20.6735C27.6648 22.0205 26.9261 23.2502 25.9326 24.2633C24.939 25.2764 23.7184 26.0445 22.3691 26.5056C21.0198 26.9667 19.5798 27.108 18.1651 26.918C16.7504 26.728 15.4007 26.212 14.225 25.4118H6.80342C6.5998 25.4117 6.40379 25.3353 6.25501 25.1979C6.10622 25.0606 6.01575 24.8725 6.00187 24.6718C5.98799 24.471 6.05174 24.2726 6.18024 24.1165C6.30874 23.9604 6.4924 23.8584 6.69412 23.8309L6.80342 23.8235L12.4483 23.8246C12.0271 23.3352 11.66 22.8028 11.3532 22.2364L8.94116 22.2353C8.73754 22.2352 8.54154 22.1588 8.39275 22.0214C8.24397 21.8841 8.15349 21.696 8.13961 21.4953C8.12574 21.2946 8.18949 21.0961 8.31798 20.94C8.44648 20.784 8.63015 20.6819 8.83186 20.6545L8.94116 20.6471L10.6846 20.6481C10.4181 19.7901 10.283 18.8975 10.2838 18C10.2838 15.7797 11.0982 13.7457 12.4473 12.1765H7.87283C7.66921 12.1764 7.4732 12.1 7.32442 11.9626C7.17563 11.8253 7.08516 11.6372 7.07128 11.4365C7.0574 11.2358 7.12115 11.0373 7.24965 10.8812C7.37814 10.7251 7.56181 10.6231 7.76353 10.5957L7.87283 10.5882H14.2239C15.7428 9.55119 17.5458 8.99708 19.392 9.00001ZM20.6286 20.3464C20.2488 20.5422 19.827 20.645 19.3987 20.6461C18.9703 20.6472 18.548 20.5466 18.1672 20.3527L16.9928 21.5132C17.6786 21.9716 18.5048 22.2406 19.3952 22.2406C20.2889 22.2406 21.1183 21.9706 21.8051 21.5089L20.6286 20.3464ZM15.1079 18.0032C15.1079 18.8884 15.3823 19.7111 15.8527 20.3908L17.0239 19.2357C16.8194 18.8548 16.7127 18.4301 16.7131 17.9989C16.7131 17.5574 16.8235 17.1413 17.0174 16.776L15.8484 15.6219C15.3643 16.3242 15.1062 17.1535 15.1079 18.0032ZM22.9474 15.6304L21.7741 16.7898C21.9627 17.1519 22.0698 17.5638 22.0698 18C22.0698 18.4415 21.9605 18.8577 21.7666 19.224L22.9431 20.3855C23.4103 19.7068 23.6825 18.8873 23.6825 18.0042C23.6825 17.1254 23.4114 16.3069 22.9474 15.6304ZM19.392 16.9412C19.2474 16.9348 19.103 16.9574 18.9675 17.0077C18.8319 17.058 18.7081 17.1348 18.6035 17.2337C18.4989 17.3325 18.4156 17.4513 18.3588 17.5828C18.3019 17.7144 18.2725 17.8559 18.2725 17.9989C18.2725 18.142 18.3019 18.2835 18.3588 18.4151C18.4156 18.5466 18.4989 18.6653 18.6035 18.7642C18.7081 18.8631 18.8319 18.9399 18.9675 18.9902C19.103 19.0405 19.2474 19.0631 19.392 19.0567C19.6676 19.0445 19.9279 18.9278 20.1185 18.7307C20.3092 18.5337 20.4156 18.2716 20.4156 17.9989C20.4156 17.7263 20.3092 17.4642 20.1185 17.2672C19.9279 17.0701 19.6676 16.9534 19.392 16.9412ZM19.3952 13.7668C18.5354 13.7656 17.6952 14.0206 16.9842 14.4985L18.1522 15.6526C18.5366 15.4545 18.9639 15.3516 19.3975 15.3525C19.831 15.3534 20.2579 15.4582 20.6414 15.6579L21.8116 14.5027C21.0998 14.0219 20.2574 13.7653 19.3952 13.7668Z" fill="#2D2D2D" />
+                                </svg>
+                                <div class="relative flex flex-col justify-center gap-1 w-full h-full">
+                                    <div class="flex justify-between w-full">
+                                        <div class="text-white">WHEEL OFFSET : {{ stancer.wheelsOffset }}</div>
+                                        <div class="text-white">1.05</div>
+                                    </div>
+                                    <input class="w-full h-[0.7vw] appearance-none rounded-[0.5em] focus:outline-none border-none bg-transparent" type="range" name="suspensionHeight" v-model="stancer.wheelsOffset" step="0.01" :min="stancerRange.WheelsOffset[0]" :max="stancerRange.WheelsOffset[1]" />
+                                    <div class="absolute top-[1.85vw] left-[0.01vw] w-full h-[0.39vw] bg-[#9F9F9F] rounded-[0.5em] -z-10">
+                                    </div>
+                                    <div class="absolute top-[1.85vw] left-[0.01vw] w-full h-[.39vw] -z-10 overflow-hidden">
+                                        <div class="h-[0.39vw] bg-[#00A3FF] pointer-events-none -z-10" :class="[ `w-[${(Number(stancer.wheelsOffset) - stancerRange.WheelsOffset[0]) / (stancerRange.WheelsOffset[1] - stancerRange.WheelsOffset[0]) * 100}%]` ]">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex w-[75%] h-[15%] gap-5">
+                                <svg class="w-[1.822916666666667vw]" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="35" height="35" transform="translate(0 0.00195312)" fill="white" />
+                                    <path d="M14.625 6L6 18H14.625L8.875 30L29 15H17.5L26.125 6H14.625Z" fill="#2D2D2D" />
+                                </svg>
+                                <div class="relative flex flex-col justify-center gap-1 w-full h-full">
+                                    <div class="flex justify-between w-full">
+                                        <div class="text-white">WHEEL ROTATION : {{ stancer.wheelsYRotation }}</div>
+                                        <div class="text-white">0.3</div>
+                                    </div>
+                                    <input class="w-full h-[0.7vw] appearance-none rounded-[0.5em] focus:outline-none border-none bg-transparent" type="range" name="suspensionHeight" v-model="stancer.wheelsYRotation" step="0.01" :min="stancerRange.WheelsYRotation[0]" :max="stancerRange.WheelsYRotation[1]" />
+                                    <div class="absolute top-[1.85vw] left-[0.01vw] w-full h-[0.39vw] bg-[#9F9F9F] rounded-[0.5em] -z-10">
+                                    </div>
+                                    <div class="absolute top-[1.85vw] left-[0.01vw] w-full h-[.39vw] -z-10 overflow-hidden">
+                                        <div class="h-[0.39vw] bg-[#00A3FF] pointer-events-none -z-10" :class="[ `w-[${(Number(stancer.wheelsYRotation) - stancerRange.WheelsYRotation[0]) / (stancerRange.WheelsYRotation[1] - stancerRange.WheelsYRotation[0]) * 100}%]` ]">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex w-[75%] h-[15%] gap-5">
+                                <svg class="w-[1.822916666666667vw]" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="35" height="35" transform="translate(0 0.00195312)" fill="white" />
+                                    <path d="M16.8889 28.0004C21.7983 28.0004 25.7778 24.021 25.7778 19.1115C25.7778 14.2021 21.7983 10.2227 16.8889 10.2227C11.9794 10.2227 8 14.2021 8 19.1115C8 24.021 11.9794 28.0004 16.8889 28.0004Z" stroke="#2D2D2D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M16.8889 21.3333C17.4783 21.3333 18.0435 21.0992 18.4602 20.6825C18.877 20.2657 19.1111 19.7005 19.1111 19.1111C19.1111 18.5217 18.877 17.9565 18.4602 17.5398C18.0435 17.123 17.4783 16.8889 16.8889 16.8889C16.2995 16.8889 15.7343 17.123 15.3175 17.5398C14.9008 17.9565 14.6667 18.5217 14.6667 19.1111C14.6667 19.7005 14.9008 20.2657 15.3175 20.6825C15.7343 21.0992 16.2995 21.3333 16.8889 21.3333ZM16.8889 8C18.348 8 19.7929 8.2874 21.1409 8.84578C22.489 9.40417 23.7139 10.2226 24.7456 11.2544C25.7774 12.2861 26.5958 13.511 27.1542 14.8591C27.7126 16.2071 28 17.652 28 19.1111H23.5589C23.5589 17.3421 22.8562 15.6456 21.6053 14.3947C20.3544 13.1438 18.6579 12.4411 16.8889 12.4411V8Z" fill="#2D2D2D" stroke="#2D2D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="relative flex flex-col justify-center gap-1 w-full h-full">
+                                    <div class="flex justify-between w-full">
+                                        <div class="text-white">WHEEL WIDTH : {{ stancer.wheelWidth }}</div>
+                                        <div class="text-white">0.9</div>
+                                    </div>
+                                    <input class="w-full h-[0.7vw] appearance-none rounded-[0.5em] focus:outline-none border-none bg-transparent" type="range" name="suspensionHeight" v-model="stancer.wheelWidth" step="0.01" :min="stancerRange.WheelWidth[0]" :max="stancerRange.WheelWidth[1]" />
+                                    <div class="absolute top-[1.85vw] left-[0.01vw] w-full h-[0.39vw] bg-[#9F9F9F] rounded-[0.5em] -z-10">
+                                    </div>
+                                    <div class="absolute top-[1.85vw] left-[0.01vw] w-full h-[.39vw] -z-10 overflow-hidden">
+                                        <div class="h-[0.39vw] bg-[#00A3FF] pointer-events-none -z-10" :class="[ `w-[${(Number(stancer.wheelWidth) - stancerRange.WheelWidth[0]) / (stancerRange.WheelWidth[1] - stancerRange.WheelWidth[0]) * 100}%]` ]">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex w-[75%] h-[15%] gap-5">
+                                <svg class="w-[1.822916666666667vw]" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="35" height="35" transform="translate(0 0.00195312)" fill="white" />
+                                    <path d="M16.8889 28.0004C21.7983 28.0004 25.7778 24.021 25.7778 19.1115C25.7778 14.2021 21.7983 10.2227 16.8889 10.2227C11.9794 10.2227 8 14.2021 8 19.1115C8 24.021 11.9794 28.0004 16.8889 28.0004Z" stroke="#2D2D2D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M16.8889 21.3333C17.4783 21.3333 18.0435 21.0992 18.4602 20.6825C18.877 20.2657 19.1111 19.7005 19.1111 19.1111C19.1111 18.5217 18.877 17.9565 18.4602 17.5398C18.0435 17.123 17.4783 16.8889 16.8889 16.8889C16.2995 16.8889 15.7343 17.123 15.3175 17.5398C14.9008 17.9565 14.6667 18.5217 14.6667 19.1111C14.6667 19.7005 14.9008 20.2657 15.3175 20.6825C15.7343 21.0992 16.2995 21.3333 16.8889 21.3333ZM16.8889 8C18.348 8 19.7929 8.2874 21.1409 8.84578C22.489 9.40417 23.7139 10.2226 24.7456 11.2544C25.7774 12.2861 26.5958 13.511 27.1542 14.8591C27.7126 16.2071 28 17.652 28 19.1111H23.5589C23.5589 17.3421 22.8562 15.6456 21.6053 14.3947C20.3544 13.1438 18.6579 12.4411 16.8889 12.4411V8Z" fill="#2D2D2D" stroke="#2D2D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="relative flex flex-col justify-center gap-1 w-full h-full">
+                                    <div class="flex justify-between w-full">
+                                        <div class="text-white">WHEEL SIZE : {{ stancer.wheelSize }}</div>
+                                        <div class="text-white">0.9</div>
+                                    </div>
+                                    <input class="w-full h-[0.7vw] appearance-none rounded-[0.5em] focus:outline-none border-none bg-transparent" type="range" name="suspensionHeight" v-model="stancer.wheelSize" step="0.01" :min="stancerRange.WheelSize[0]" :max="stancerRange.WheelSize[1]" />
+                                    <div class="absolute top-[1.85vw] left-[0.01vw] w-full h-[0.39vw] bg-[#9F9F9F] rounded-[0.5em] -z-10">
+                                    </div>
+                                    <div class="absolute top-[1.85vw] left-[0.01vw] w-full h-[.39vw] -z-10 overflow-hidden">
+                                        <div class="h-[0.39vw] bg-[#00A3FF] pointer-events-none -z-10" :class="[ `w-[${(Number(stancer.wheelSize) - stancerRange.WheelSize[0]) / (stancerRange.WheelSize[1] - stancerRange.WheelSize[0]) * 100}%]` ]">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-[98.4%] flex justify-between w-full h-full">
+                            <div class="w-[3.5%] h-[1.5%] bg-[#9F9F9F]"></div>
+                            <div class="absolute top-[.5%] flex justify-center w-full h-full">
+                                <div class="w-[85%] h-[1%] bg-gradient-to-l from-transparent to-[#676767]"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute left-1/2 -translate-x-1/2 top-[92%] -translate-y-1/2 w-[97.83333333333333vw] h-[8.33333333333vw] footer-bg text-base -z-10">
+                        <div class="absolute flex justify-between w-full h-full">
+                            <div class="w-[.7%] h-[3.5%] bg-[#9F9F9F]"></div>
+                            <div class="w-[.7%] h-[3.5%] bg-[#9F9F9F]"></div>
+                        </div>
+
+                        <div class="absolute left-[40.5%] -translate-x-1/2 top-[37%] -translate-y-1/2 flex items-end w-[78%] h-[99%] z-10 overflow-hidden">
+                            <div class="flex justify-center items-center w-[25%] h-full bg-white bg-opacity-50">
+                                <div class="flex justify-center items-center gap-2 w-full h-full">
+                                    <div class="w-[.5vw] h-[3vw] bg-[#101010CC] anim3"></div>
+                                    <div class="w-[.5vw] h-[4vw] bg-[#101010CC] stancerAnim1"></div>
+                                    <div class="w-[.5vw] h-[5vw] bg-[#101010CC] stancerAnim2"></div>
+                                    <div class="w-[.5vw] h-[6vw] bg-[#101010CC] stancerAnim3"></div>
+                                    <div class="w-[.5vw] h-[5vw] bg-[#101010CC] stancerAnim4"></div>
+                                    <div class="w-[.5vw] h-[4vw] bg-[#101010CC] stancerAnim5"></div>
+                                    <div class="w-[.5vw] h-[3vw] bg-[#101010CC] anim3"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center items-center w-[25%] h-[50%]">
+                                <div class="w-[75%] h-full gap-5">
+                                    <div class="flex flex-col justify-center gap-1 w-full h-full">
+                                        <div class="flex justify-between w-full">
+                                            <div class="text-white text-[.9vw] font-bold">MAX SPEED</div>
+                                            <div class="text-white text-[.9vw] font-bold">{{ vehicleStatus.maxSpeed
+                                                }}
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-2 w-full h-full">
+                                            <div v-for="index in 6" :key="index" class="w-[15%] h-[15%] -skew-x-[40deg] bg-[##9F9F9F]">
+                                                <div class="h-full bg-[#00A3FF] duration-500" :class="`w-[${Math.min(100, Math.max(0, ((vehicleStatus.maxSpeed / 7) - ((index - 1) * 0.167)) / 0.167 * 100))}%]`">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center items-center w-[25%] h-[50%]">
+                                <div class="w-[75%] h-full gap-5">
+                                    <div class="flex flex-col justify-center gap-1 w-full h-full">
+                                        <div class="flex justify-between w-full">
+                                            <div class="text-white text-[.9vw] font-bold">ACCELERATION</div>
+                                            <div class="text-white text-[.9vw] font-bold">{{
+                                                vehicleStatus.acceleration
+                                                }}
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-2 w-full h-full">
+                                            <div v-for="index in 6" :key="index" class="w-[15%] h-[15%] -skew-x-[40deg] bg-[#9F9F9F]">
+                                                <div class="h-full bg-[#00A3FF] duration-500" :class="`w-[${Math.min(100, Math.max(0, ((vehicleStatus.acceleration / 7) - ((index - 1) * 0.167)) / 0.167 * 100))}%]`">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center items-center w-[25%] h-[50%]">
+                                <div class="w-[75%] h-full gap-5">
+                                    <div class="flex flex-col justify-center gap-1 w-full h-full">
+                                        <div class="flex justify-between w-full">
+                                            <div class="text-white text-[.9vw] font-bold">POWER</div>
+                                            <div class="text-white text-[.9vw] font-bold">{{ vehicleStatus.power }}
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-2 w-full h-full">
+                                            <div v-for="index in 6" :key="index" class="w-[15%] h-[15%] -skew-x-[40deg] bg-[#9F9F9F]">
+                                                <div class="h-full bg-[#00A3FF] duration-500" :class="`w-[${Math.min(100, Math.max(0, ((vehicleStatus.power / 7) - ((index - 1) * 0.167)) / 0.167 * 100))}%]`">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center items-center w-[25%] h-[50%]">
+                                <div class="w-[75%] h-full gap-5">
+                                    <div class="flex flex-col justify-center gap-1 w-full h-full">
+                                        <div class="flex justify-between w-full">
+                                            <div class="text-white text-[.9vw] font-bold">BRAKE</div>
+                                            <div class="text-white text-[.9vw] font-bold">{{ vehicleStatus.breaks }}
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-2 w-full h-full">
+                                            <div v-for="index in 6" :key="index" class="w-[15%] h-[15%] -skew-x-[40deg] bg-[#9F9F9F]">
+                                                <div class="h-full bg-[#00A3FF] duration-500" :class="`w-[${Math.min(100, Math.max(0, ((vehicleStatus.breaks / 1.75) - ((index - 1) * 0.167)) / 0.167 * 100))}%]`">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="absolute left-1/2 -translate-x-1/2 top-[97.5%] w-[97%] h-[2.5%] bg-[#676767]">
+                        </div>
+
+                        <div class="absolute left-[4.5%] -translate-x-1/2 top-[94.3%] w-[3%] h-[6%] bg-[#00A3FF]">
+                        </div>
+
+                        <div class="absolute flex justify-between items-end w-full h-full">
+                            <div class="w-[.7%] h-[3.5%] bg-[#9F9F9F]"></div>
+                            <div class="w-[.7%] h-[3.5%] bg-[#9F9F9F]"></div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+
+            <!-- Stancer Purchase Display -->
+            <div v-if="route == 'stancer'" class="absolute left-[89.9%] -translate-x-1/2 top-[90.2%] -translate-y-1/2 flex flex-col w-[18%] h-[8.33333333333vw] purchase-bg z-10">
+                <div class="absolute flex justify-end w-full h-full">
+                    <div class="w-[3.5%] h-[3%] bg-[#9F9F9F]"></div>
+                    <div class="absolute right-[3.5%] top-0 flex justify-center w-full h-full">
+                        <div class="w-[92%] h-[2%] bg-[#676767]"></div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center items-center gap-5 w-full h-full p-5">
+                    <div class="flex justify-between w-[95%] gap-2">
+                        <div class="text-[#9F9F9F] text-[1vw] font-bold">TOTAL PRICE</div>
+                        <div class="flex items-center gap-2">
+                            <div class="text-white text-[1vw] font-bold">{{ stancerPrice.toLocaleString('en-Us') }}
+                            </div>
+                            <moddollars-icon></moddollars-icon>
+                        </div>
+                    </div>
+
+                    <div class="w-[95%] h-[2.5%] bg-[#676767]">
+                        <div class="flex justify-between w-full h-full">
+                            <div class="w-[2%] h-full bg-[#9F9F9F]"></div>
+                            <div class="w-[2%] h-full bg-[#9F9F9F]"></div>
+                        </div>
+                    </div>
+
+                    <div @click="purchaseStancer" class="group relative flex justify-center items-center w-[95%] h-[35%] bg-[#00A3FF] cursor-pointer">
+                        <div class="absolute left-1/2 -translate-x-1/2 flex justify-between w-full h-full">
+                            <div class="group-hover:w-[4%] duration-300 white-block w-[2%] h-[10%] bg-white -translate-x-full">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 white-block w-[2%] h-[10%] bg-white translate-x-full">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 w-[2%] h-[10%] bg-white -translate-x-full absolute left-0 bottom-0">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 w-[2%] h-[10%] bg-white translate-x-full absolute right-0 bottom-0">
+                            </div>
+                        </div>
+
+                        <div class="purchase relative flex justify-center items-center w-full h-full bg-[#00A3FF] overflow-hidden z-10">
+                            <div class="text-white text-[.9vw] font-bold">BILL</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shop -->
+        <transition>
+            <div v-show="display && route == 'customShop'" class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-col items-center w-[45.91666666666667vw] h-[40.3125vw] shop-bg text-base">
+                <div class="absolute flex justify-between p-2 w-full h-full">
+                    <div class="w-[1%] h-[.5%] bg-white"></div>
+                    <div class="w-[1%] h-[.5%] bg-white"></div>
+                </div>
+
+                <div class="flex justify-center items-center w-[95%] h-[6%] my-7">
+                    <div class="flex justify-center items-center w-full h-full shop-menu-bg">
+                        <div class="flex items-center gap-8 w-[10%] h-full">
+                            <svg @click="prevShopListSlide" class="w-[1.5625vw] cursor-pointer z-10" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M-0.5 0.0449084L27.4999 0.0449125L16.4999 11.0007L27.4999 22.0003L-0.499962 22.0007L-0.5 0.0449084Z" fill="url(#paint0_linear_201_6315)" />
+                                <path d="M21.0903 11L30 19.5559L27.4549 22L16 11L27.4549 -5.00709e-07L30 2.44406L21.0903 11Z" fill="#00A3FF" />
+                                <defs>
+                                    <linearGradient id="paint0_linear_201_6315" x1="-1" y1="11" x2="28" y2="11" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.927535" stop-color="#00A3FF" stop-opacity="0" />
+                                        <stop offset="1" stop-color="#00A3FF" stop-opacity="0.6" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="w-[13%] h-[9%] bg-[#676767]"></div>
+                        </div>
+
+                        <div id="shopListSwiper" class="w-[80%] h-full overflow-hidden z-10">
+                            <div class="swiper-wrapper w-full h-full shopInput">
+                                <div v-for="(menu, index) in shopMenus" :key="index" @click="selectShopMenu(menu.name)" class="swiper-slide flex justify-center items-center h-full cursor-pointer hoverShops" :class="[ currentShopMenu == menu.name ? 'is-select-shop flex justify-center items-center w-full h-full bg-gradient-to-r from-transparent via-[#00a3ff]/[.5] to-transparent duration-500' : 'bg-transparent']">
+                                    <div class="text-white font-bold">
+                                        {{ menu.name }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end items-center gap-8 w-[10%] h-full">
+                            <div class="w-[13%] h-[9%] bg-[#676767]"></div>
+
+                            <svg @click="nextShopListSlide" class="w-[1.5625vw] cursor-pointer z-10" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30.5 0.0449084L2.50011 0.0449125L13.5001 11.0007L2.50011 22.0003L30.5 22.0007L30.5 0.0449084Z" fill="url(#paint0_linear_201_6318)" />
+                                <path d="M8.90975 11L-8.46841e-07 19.5559L2.54513 22L14 11L2.54513 -5.00709e-07L-9.8857e-08 2.44406L8.90975 11Z" fill="#00A3FF" />
+                                <defs>
+                                    <linearGradient id="paint0_linear_201_6318" x1="31" y1="11" x2="2" y2="11" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.927535" stop-color="#00A3FF" stop-opacity="0" />
+                                        <stop offset="1" stop-color="#00A3FF" stop-opacity="0.6" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-x-[2%] gap-y-[5%] w-[95%] h-[72%] overflow-y-auto shopListInput z-10">
+                    <div v-for="(item, index) in shopItems" :key="index" @click="selectItem(item);" class="shop-item relative group w-[23.5%] h-[47%] shop-mod-bg cursor-pointer overflow-hidden">
+                        <div class="absolute left-1/2 -translate-x-1/2 w-[80%] h-[.8%] group-hover:bg-[#00A3FF] duration-500" :class="[ selectedItem.name == item.name ? 'bg-[#00A3FF]' : 'bg-[#676767]']">
+                        </div>
+
+                        <div class="absolute flex justify-between w-full h-full">
+                            <div class="w-[6%] h-[1.5%] group-hover:bg-[#00A3FF] duration-500" :class="[ selectedItem.name == item.name ? 'bg-[#00A3FF]' : 'bg-[#9F9F9F]']"></div>
+                            <div class="w-[6%] h-[1.5%] group-hover:bg-[#00A3FF] duration-500" :class="[ selectedItem.name == item.name ? 'bg-[#00A3FF]' : 'bg-[#9F9F9F]']"></div>
+                        </div>
+
+                        <div class="flex flex-col justify-center items-center w-full h-full p-5">
+                            <img :src="`${itemImagePath}${item.name}.png`" class="mt-2 h-[90%]">
+
+                            <div class="flex flex-col gap-4 mt-5 w-full ">
+                                <div class="relative max-w-full truncate text-center text-white text-[.9vw] font-bold" :class="[ selectedItem.name == item.name ? 'text-[#00A3FF] playAnimShop' : 'text-white']">
+                                    {{
+                                    item.label }}</div>
+                                <div class="flex justify-center gap-2 text-white text-[.9vw] font-bold">
+                                    <div>{{ item.price.toLocaleString('en-US') }}</div>
+                                    <moddollars-icon></moddollars-icon>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="absolute left-1/2 -translate-x-1/2 top-[99%] w-[80%] h-[.8%] group-hover:bg-[#00A3FF] duration-500" :class="[ selectedItem.name == item.name ? 'bg-[#00A3FF]' : 'bg-[#676767]']">
+                        </div>
+
+                        <div class="absolute top-[98%] flex justify-between w-full h-full">
+                            <div class="w-[6%] h-[1.5%] group-hover:bg-[#00A3FF] duration-500" :class="[ selectedItem.name == item.name ? 'bg-[#00A3FF]' : 'bg-[#9F9F9F]']">
+                            </div>
+                            <div class="w-[6%] h-[1.5%] group-hover:bg-[#00A3FF] duration-500" :class="[ selectedItem.name == item.name ? 'bg-[#00A3FF]' : 'bg-[#9F9F9F]']">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 w-[95%] h-[.5%] bg-[#676767]">
+                    <div class="flex justify-start w-full h-full">
+                        <div class="w-[1.5%] h-full bg-[#9F9F9F]"></div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end items-center gap-8 w-[95%] h-[13%]">
+                    <div v-if="selectedItem.price" class="flex gap-5">
+                        <!-- <div class="text-[#9F9F9F] text-[.9vw] font-semibold">PRICE</div> -->
+                        <div class="flex gap-4 text-white text-[.9vw] font-bold">
+                            <div>{{ selectedItemPrice }}</div>
+                            <moddollars-icon></moddollars-icon>
+                        </div>
+                    </div>
+                    <div @click="buyItem" class="confirm-shop group relative flex justify-center items-center w-[35%] h-[40%] bg-[#00A3FF] cursor-pointer z-10">
+                        <div class="absolute left-1/2 -translate-x-1/2 flex justify-between w-full h-full">
+                            <div class="group-hover:w-[4%] duration-300 white-block w-[2%] h-[10%] bg-white -translate-x-full">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 white-block w-[2%] h-[10%] bg-white translate-x-full">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 w-[2%] h-[10%] bg-white -translate-x-full absolute left-0 bottom-0">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 w-[2%] h-[10%] bg-white translate-x-full absolute right-0 bottom-0">
+                            </div>
+                        </div>
+
+                        <div class="purchase-shop relative flex justify-center items-center w-full h-full text-white text-[.9vw] font-bold z-10 overflow-hidden">
+                            <div>PURCHASE</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute flex justify-between items-end p-2 w-full h-full">
+                    <div class="w-[1%] h-[.5%] bg-white"></div>
+                    <div class="w-[1%] h-[.5%] bg-white"></div>
+                </div>
+            </div>
+        </transition>
+
+        <!-- Loading Progress -->
+        <div v-if="loadingCustomsDisplay" class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex justify-center items-center gap-5 w-[25%] h-[7%] bg-black/[.6] text-base">
+            <div class="relative flex justify-center items-center w-[80%] h-[50%]">
+                <div class="absolute flex justify-between w-full h-full">
+                    <div class="w-[2%] h-[13%] bg-white"></div>
+                    <div class="w-[2%] h-[13%] bg-white"></div>
+                </div>
+
+                <div class="absolute left-4 w-[0%] h-[20%] bg-[#00A3FF]" :style="{'animation': `barLoading 1500ms linear forwards`}"></div>
+
+                <div class="absolute flex justify-between items-end w-full h-full">
+                    <div class="w-[2%] h-[13%] bg-white"></div>
+                    <div class="w-[2%] h-[13%] bg-white"></div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center w-[5%] h-[50%] text-white font-bold">
+                {{ percentage }}%
+            </div>
+        </div>
+
+        <!-- Pop Up -->
+        <transition>
+            <div v-if="exitPopupConfirmDisplay" class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[20vw] h-[8vw] header-bg duration-500 text-base">
+                <div class="absolute left-1/2 -translate-x-1/2 w-[90%] h-[2%] bg-[#676767] duration-500">
+                </div>
+
+                <div class="absolute flex justify-between w-full h-full">
+                    <div class="w-[3%] h-[3%] bg-[#9F9F9F] duration-500"></div>
+                    <div class="w-[3%] h-[3%] bg-[#9F9F9F] duration-500"></div>
+                </div>
+
+                <div class="flex flex-col justify-center items-center gap-3 w-full h-full">
+                    <div class="text-white text-center font-bold">
+                        Your customizations have not been saved <br>
+                        Confirm to leave?
+                    </div>
+                    <div class="relative flex justify-center items-center gap-10 w-full h-[30%]">
+                        <div @click="exitPopupConfirmDisplay = false;" class="cancel-popup group relative flex justify-center items-center w-[30%] h-[60%] bg-[#9F9F9F] cursor-pointer z-10">
+                            <div class="absolute left-1/2 -translate-x-1/2 flex justify-between w-full h-full">
+                                <div class="group-hover:w-[7%] duration-300 w-[5%] h-[13%] bg-white -translate-x-full">
+                                </div>
+                                <div class="group-hover:w-[7%] duration-300 w-[5%] h-[13%] bg-white translate-x-full">
+                                </div>
+                                <div class="group-hover:w-[7%] duration-300 w-[5%] h-[13%] bg-white -translate-x-full absolute left-0 bottom-0">
+                                </div>
+                                <div class="group-hover:w-[7%] duration-300 w-[5%] h-[13%] bg-white translate-x-full absolute right-0 bottom-0">
+                                </div>
+                            </div>
+                            <div class="cancel-purchase-popup relative flex justify-center items-center w-full h-full overflow-hidden">
+                                <div class="text-white font-bold z-10">CANCEL</div>
+                            </div>
+                        </div>
+                        <div @click="closeDisplay(); exitPopupConfirmDisplay = false" class="confirm-popup group relative flex justify-center items-center w-[30%] h-[60%] bg-[#00A3FF] cursor-pointer z-10">
+                            <div class="absolute left-1/2 -translate-x-1/2 flex justify-between w-full h-full">
+                                <div class="group-hover:w-[7%] duration-300 w-[5%] h-[13%] bg-white -translate-x-full">
+                                </div>
+                                <div class="group-hover:w-[7%] duration-300 w-[5%] h-[13%] bg-white translate-x-full">
+                                </div>
+                                <div class="group-hover:w-[7%] duration-300 w-[5%] h-[13%] bg-white -translate-x-full absolute left-0 bottom-0">
+                                </div>
+                                <div class="group-hover:w-[7%] duration-300 w-[5%] h-[13%] bg-white translate-x-full absolute right-0 bottom-0">
+                                </div>
+                            </div>
+                            <div class="purchase-popup relative flex justify-center items-center w-full h-full overflow-hidden">
+                                <div class="text-white font-bold z-10">CONFIRM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute left-1/2 -translate-x-1/2 top-[98%] w-[90%] h-[2%] bg-[#676767] duration-500">
+                </div>
+
+                <div class="absolute top-[97.5%] flex justify-between w-full h-full">
+                    <div class="w-[3%] h-[3%] bg-[#9F9F9F] duration-500">
+                    </div>
+                    <div class="w-[3%] h-[3%] bg-[#9F9F9F] duration-500">
+                    </div>
+                </div>
+            </div>
+        </transition>
+
+        <!-- Respray Item Display -->
+        <transition>
+            <div v-show="display && route == 'customColor'" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-between items-center w-[14.27083333333333vw] h-[10.75vw] header-bg text-base duration-500">
+                <div class="absolute left-1/2 -translate-x-1/2 w-[90%] h-[2%] bg-[#676767] duration-500">
+                </div>
+
+                <div class="absolute flex justify-between w-full h-full">
+                    <div class="w-[3%] h-[3%] bg-[#9F9F9F] duration-500"></div>
+                    <div class="w-[3%] h-[3%] bg-[#9F9F9F] duration-500"></div>
+                </div>
+
+                <div class="flex flex-col justify-between items-center w-full h-full p-4">
+                    <div class="flex justify-center text-white font-bold text-[1vw]">CUSTOM COLOR</div>
+                    <div class="absolute left-[50%] -translate-x-1/2 top-[50%] -translate-y-1/2 w-[3vw] h-[3vw] rounded-full overflow-hidden">
+                        <input type="color" v-model="customColor" class="bg-transparent scale-[6] outline-none cursor-pointer ml-[2vw]">
+                    </div>
+
+                    <div @click="applyCustomModColor" class="group relative flex justify-center items-center w-[95%] h-[20%] bg-[#00A3FF] cursor-pointer">
+                        <div class="absolute left-1/2 -translate-x-1/2 flex justify-between w-full h-full">
+                            <div class="group-hover:w-[4%] duration-300 white-block w-[2%] h-[10%] bg-white -translate-x-full">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 white-block w-[2%] h-[10%] bg-white translate-x-full">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 w-[2%] h-[10%] bg-white -translate-x-full absolute left-0 bottom-0">
+                            </div>
+                            <div class="group-hover:w-[4%] duration-300 w-[2%] h-[10%] bg-white translate-x-full absolute right-0 bottom-0">
+                            </div>
+                        </div>
+
+                        <div class="purchase relative flex justify-center items-center w-full h-full bg-[#00A3FF] overflow-hidden z-10">
+                            <div class="text-white text-[.9vw] font-bold">BILL</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </transition>
+    </div>
+
+    <!-- Gsap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" integrity="sha512-f8mwTB+Bs8a5c46DEm7HQLcJuHMBaH/UFlcgyetMqqkvTcYg4g5VXsYR71b3qC82lZytjNYvBj2pf0VekA9/FQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- V -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js" integrity="sha512-Wbf9QOX8TxnLykSrNGmAc5mDntbpyXjOw9zgnKql3DgQ7Iyr5TCSPWpvpwDuo+jikYoSNMD9tRRH854VfPpL9A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="./components/IconGradientComponent.js"></script>
+    <script src="./app.js"></script>
+
+</body>
+
+</html>
