@@ -1,5 +1,5 @@
 # 🚘 zobyeteam_carcustoms (v2.0.4)
-> ระบบแต่งรถที่ครบเครื่องและสมบูรณ์แบบที่สุดจาก **ZOBYETEAM** (ระบบจดลิขสิทธิ์อย่างเป็นทางการ)
+> ระบบแต่งรถที่ครบเครื่องและสมบูรณ์แบบที่สุดจาก **ZOBYETEAM**
 
 ---
 
@@ -148,5 +148,5 @@ Config.Items = {
 
 ---
 
-> 📃 **ข้อกำหนดและลิขสิทธิ์**:
-> ระบบนี้อยู่ภายใต้ลิขสิทธิ์ของ **ZOBYETEAM** ห้ามคัดลอก ดัดแปลง หรือแจกจ่ายเชิงพาณิชย์โดยไม่ได้รับอนุญาตเป็นลายลักษณ์อักษรจากผู้พัฒนา
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](file:///Users/takzobye/Developer/projects/zobyeteam/scripts/zobyeteam_carcustoms/LICENSE) file for details.
