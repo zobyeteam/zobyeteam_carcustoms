@@ -1,7 +1,13 @@
-# 🚘 zobyeteam_carcustoms (v2.0.4)
+# 🚘 zobyeteam_carcustoms
 > ระบบแต่งรถที่ครบเครื่องและสมบูรณ์แบบที่สุดจาก **ZOBYETEAM**
+<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/9735d39d-a74c-470c-b48b-a07df37545b8" />
 
 ---
+
+## Videos
+- [วิดีโออธิบายฟีเจอร์ทั้งหมด](https://www.youtube.com/watch?v=px9sjnRGP4I)
+- [วิดีโอพรีวิวเวอร์ชัน 1](https://www.youtube.com/watch?v=8XzWZokReUQ)
+- [วิดีโอพรีวิวเวอร์ชัน 2](https://www.youtube.com/watch?v=X9O3nnlcDyA)
 
 ## 🌟 ฟีเจอร์หลัก (Key Features)
 
